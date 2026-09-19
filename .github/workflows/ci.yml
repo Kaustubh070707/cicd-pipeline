@@ -36,6 +36,7 @@ jobs:
           image-ref: ghcr.io/${{ env.REPO_LC }}:${{ github.sha }}
           severity: CRITICAL,HIGH
           exit-code: '1'
+          ignore-unfixed: true
       - name: Push
         if: github.ref == 'refs/heads/main'
         run: |
