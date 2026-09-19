@@ -13,8 +13,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install -r requirements.txt
-      - run: python -m py_compile app/main.py
+          cache: 'pip'
+      - run: pip install -r requirements-dev.txt
+      - run: ruff check app/
+      - run: pytest -q
 
   build-scan-push:
     needs: lint-test
@@ -44,4 +46,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "TODO: kubectl set image + rollout status, verify probes"
+      # - run: echo "TODO: kubectl set image + rollout status, verify probes"
