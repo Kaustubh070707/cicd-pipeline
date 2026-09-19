@@ -26,19 +26,21 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
+      - name: Lowercase repo for GHCR
+        run: echo "REPO_LC=${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
       - name: Build
-        run: docker build -t ghcr.io/${{ github.repository }}:${{ github.sha }} .
+        run: docker build -t ghcr.io/${{ env.REPO_LC }}:${{ github.sha }} .
       - name: Trivy scan
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: ghcr.io/${{ github.repository }}:${{ github.sha }}
+          image-ref: ghcr.io/${{ env.REPO_LC }}:${{ github.sha }}
           severity: CRITICAL,HIGH
           exit-code: '1'
       - name: Push
         if: github.ref == 'refs/heads/main'
         run: |
           echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-          docker push ghcr.io/${{ github.repository }}:${{ github.sha }}
+          docker push ghcr.io/${{ env.REPO_LC }}:${{ github.sha }}
 
   deploy:
     needs: build-scan-push
