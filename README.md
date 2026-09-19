@@ -1,27 +1,44 @@
-# C1 End-to-End CI/CD Pipeline
+# End-to-End CI/CD Pipeline
 
-> Highest ROI in vault. Attach to D1 flagship. Lint -> test -> scan -> build -> push -> deploy + rollback.
+Automated delivery for the [RAG chatbot](../production-rag-chatbot): every push runs lint, tests, vulnerability scan, SHA-tagged build, and deploy with probe-based rollback.
 
-## Build order
-1. Take D1 app. Write naive Dockerfile, record size.
-2. Rewrite multi-stage slim/distroless, record delta for resume.
-3. Actions workflow lint+test only. Green.
-4. Add build+push SHA tags to GHCR.
-5. Add Trivy scan, introduce vuln dep to confirm block.
-6. K8s manifests: Deployment, Service, ConfigMap, Secret, probes, limits.
-7. Deploy stage to kind, verify rolling with curl loop.
-8. Break health check, confirm rollback. Screenshot + runbook.
+## Pipeline
 
-## Image sizes
-| Stage | Size |
-|---|---|
-| naive | TBD |
-| slim | TBD target ~180MB |
+```
+push/PR on main
+ └─ lint-test: ruff check + pytest (3 contract tests)
+ └─ build-scan-push: Docker build → Trivy scan (fail on CRITICAL/HIGH) → push ghcr.io:<sha>
+ └─ deploy: rolling update, readiness/liveness probes, automatic rollback
+```
 
-## Gate
-1. Why not `latest` tag?
-2. Readiness vs liveness?
-3. Rollback steps on error spike?
+* Images tagged by commit SHA, never `latest` — every deploy traces to one commit.
+* Secrets via GitHub Secrets; nothing sensitive in the repo.
+* `main` merges only through a green pipeline (branch protection).
 
-## Resume bullet template
-Built GitHub Actions pipeline with Trivy, multi-stage Docker, K8s deploy; cut image 1.1GB->180MB, probe-based rollback verified under live traffic.
+## Status
+
+![ci](https://github.com/OWNER/cicd-pipeline/actions/workflows/ci.yml/badge.svg)
+
+## Repo layout
+
+```
+.github/workflows/ci.yml   pipeline definition
+app/                        demo service (health + ask contract, replaced by D1 image at attach)
+k8s/deployment.yaml         Deployment + Service with probes and limits
+Dockerfile / Dockerfile.naive   slim vs baseline images
+requirements.txt            runtime deps (shipped in image)
+requirements-dev.txt        CI-only deps (ruff, pytest — never shipped)
+```
+
+## Run locally
+
+```bash
+python -m venv .venv && .venv/Scripts/Activate.ps1
+pip install -r requirements-dev.txt
+ruff check app/
+pytest -q
+```
+
+## Attaching to D1
+
+Build context repointed at the RAG service Dockerfile, same SHA-tag flow; deploy step targets the live service with `/health` + `/ask` smoke checks. Trivy block and rollback demos recorded in `SKILL.md`.
