@@ -1,0 +1,210 @@
+﻿2026-09-24T18:59:18.4889785Z Current runner version: '2.337.0'
+2026-09-24T18:59:18.4911528Z ##[group]Runner Image Provisioner
+2026-09-24T18:59:18.4912314Z Hosted Compute Agent
+2026-09-24T18:59:18.4912849Z Version: 20260828.587
+2026-09-24T18:59:18.4913388Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-24T18:59:18.4914005Z Build Date: 2026-08-28T16:44:25Z
+2026-09-24T18:59:18.4914624Z Worker ID: {11fd9fa7-d2b0-460e-96dc-3685e7c609cd}
+2026-09-24T18:59:18.4915240Z Azure Region: westus3
+2026-09-24T18:59:18.4915736Z ##[endgroup]
+2026-09-24T18:59:18.4916915Z ##[group]Operating System
+2026-09-24T18:59:18.4917425Z Ubuntu
+2026-09-24T18:59:18.4917934Z 24.04.5
+2026-09-24T18:59:18.4918584Z LTS
+2026-09-24T18:59:18.4919025Z ##[endgroup]
+2026-09-24T18:59:18.4919540Z ##[group]Runner Image
+2026-09-24T18:59:18.4920060Z Image: ubuntu-24.04
+2026-09-24T18:59:18.4920595Z Version: 20260920.314.1
+2026-09-24T18:59:18.4921632Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-24T18:59:18.4922919Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+2026-09-24T18:59:18.4923699Z ##[endgroup]
+2026-09-24T18:59:18.4924711Z ##[group]GITHUB_TOKEN Permissions
+2026-09-24T18:59:18.4926299Z Contents: read
+2026-09-24T18:59:18.4927190Z Metadata: read
+2026-09-24T18:59:18.4927658Z Packages: read
+2026-09-24T18:59:18.4928095Z ##[endgroup]
+2026-09-24T18:59:18.4930172Z Secret source: Actions
+2026-09-24T18:59:18.4930931Z Cache mode: write
+2026-09-24T18:59:18.4931600Z Prepare workflow directory
+2026-09-24T18:59:18.5214108Z Prepare all required actions
+2026-09-24T18:59:18.5270895Z Getting action download info
+2026-09-24T18:59:18.8616050Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-09-24T18:59:19.0208229Z Download action repository 'helm/kind-action@v1' (SHA:ef37e7f390d99f746eb8b610417061a60e82a6cc)
+2026-09-24T18:59:19.2780151Z Download action repository 'azure/setup-kubectl@v4' (SHA:776406bce94f63e41d621b960d78ee25c8b76ede)
+2026-09-24T18:59:19.7404822Z Complete job name: deploy
+2026-09-24T18:59:19.8020299Z ##[group]Run actions/checkout@v4
+2026-09-24T18:59:19.8021008Z with:
+2026-09-24T18:59:19.8021408Z   repository: Kaustubh070707/cicd-pipeline
+2026-09-24T18:59:19.8024651Z   token: ***
+2026-09-24T18:59:19.8025039Z   ssh-strict: true
+2026-09-24T18:59:19.8025418Z   ssh-user: git
+2026-09-24T18:59:19.8025797Z   persist-credentials: true
+2026-09-24T18:59:19.8026199Z   clean: true
+2026-09-24T18:59:19.8026575Z   sparse-checkout-cone-mode: true
+2026-09-24T18:59:19.8027008Z   fetch-depth: 1
+2026-09-24T18:59:19.8027369Z   fetch-tags: false
+2026-09-24T18:59:19.8027743Z   show-progress: true
+2026-09-24T18:59:19.8028163Z   lfs: false
+2026-09-24T18:59:19.8028852Z   submodules: false
+2026-09-24T18:59:19.8029250Z   set-safe-directory: true
+2026-09-24T18:59:19.8029692Z   allow-unsafe-pr-checkout: false
+2026-09-24T18:59:19.8030351Z ##[endgroup]
+2026-09-24T18:59:19.8859329Z Syncing repository: Kaustubh070707/cicd-pipeline
+2026-09-24T18:59:19.8862041Z ##[group]Getting Git version info
+2026-09-24T18:59:19.8863179Z Working directory is '/home/runner/work/cicd-pipeline/cicd-pipeline'
+2026-09-24T18:59:19.8864748Z [command]/usr/bin/git version
+2026-09-24T18:59:19.9513411Z git version 2.55.0
+2026-09-24T18:59:19.9528604Z ##[endgroup]
+2026-09-24T18:59:19.9540792Z Temporarily overriding HOME='/home/runner/work/_temp/0b8b4930-c448-4625-bf50-4977330773f9' before making global git config changes
+2026-09-24T18:59:19.9541997Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-24T18:59:19.9545188Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cicd-pipeline/cicd-pipeline
+2026-09-24T18:59:19.9591205Z Deleting the contents of '/home/runner/work/cicd-pipeline/cicd-pipeline'
+2026-09-24T18:59:19.9595046Z ##[group]Initializing the repository
+2026-09-24T18:59:19.9598893Z [command]/usr/bin/git init /home/runner/work/cicd-pipeline/cicd-pipeline
+2026-09-24T18:59:19.9697243Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-24T18:59:19.9698865Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-24T18:59:19.9699664Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-24T18:59:19.9700444Z hint: call:
+2026-09-24T18:59:19.9701256Z hint:
+2026-09-24T18:59:19.9701933Z hint: 	git config --global init.defaultBranch <name>
+2026-09-24T18:59:19.9702755Z hint:
+2026-09-24T18:59:19.9703541Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-24T18:59:19.9704464Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-24T18:59:19.9705400Z hint:
+2026-09-24T18:59:19.9705764Z hint: 	git branch -m <name>
+2026-09-24T18:59:19.9706169Z hint:
+2026-09-24T18:59:19.9706712Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-24T18:59:19.9707684Z Initialized empty Git repository in /home/runner/work/cicd-pipeline/cicd-pipeline/.git/
+2026-09-24T18:59:19.9709952Z [command]/usr/bin/git remote add origin https://github.com/Kaustubh070707/cicd-pipeline
+2026-09-24T18:59:19.9753031Z ##[endgroup]
+2026-09-24T18:59:19.9754060Z ##[group]Disabling automatic garbage collection
+2026-09-24T18:59:19.9755195Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-24T18:59:19.9783214Z ##[endgroup]
+2026-09-24T18:59:19.9783840Z ##[group]Setting up auth
+2026-09-24T18:59:19.9787906Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-24T18:59:19.9815790Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-24T18:59:20.2255685Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-24T18:59:20.2288041Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-24T18:59:20.2477562Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-24T18:59:20.2509785Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-24T18:59:20.2696774Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-24T18:59:20.2732997Z ##[endgroup]
+2026-09-24T18:59:20.2740167Z ##[group]Fetching the repository
+2026-09-24T18:59:20.2741845Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +63f1b5eb5919029d24c870ac86a3846efb017317:refs/remotes/origin/main
+2026-09-24T18:59:21.0837586Z From https://github.com/Kaustubh070707/cicd-pipeline
+2026-09-24T18:59:21.0839173Z  * [new ref]         63f1b5eb5919029d24c870ac86a3846efb017317 -> origin/main
+2026-09-24T18:59:21.0842037Z ##[endgroup]
+2026-09-24T18:59:21.0843317Z ##[group]Determining the checkout info
+2026-09-24T18:59:21.0844749Z ##[endgroup]
+2026-09-24T18:59:21.0849533Z [command]/usr/bin/git sparse-checkout disable
+2026-09-24T18:59:21.0895847Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-24T18:59:21.0923564Z ##[group]Checking out the ref
+2026-09-24T18:59:21.0926673Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-24T18:59:21.0986063Z Switched to a new branch 'main'
+2026-09-24T18:59:21.0991060Z branch 'main' set up to track 'origin/main'.
+2026-09-24T18:59:21.0996159Z ##[endgroup]
+2026-09-24T18:59:21.1029556Z [command]/usr/bin/git log -1 --format=%H
+2026-09-24T18:59:21.1051731Z 63f1b5eb5919029d24c870ac86a3846efb017317
+2026-09-24T18:59:21.1267141Z ##[group]Run echo "REPO_LC=${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
+2026-09-24T18:59:21.1268855Z [36;1mecho "REPO_LC=${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"[0m
+2026-09-24T18:59:21.2096062Z shell: /usr/bin/bash -e {0}
+2026-09-24T18:59:21.2097192Z ##[endgroup]
+2026-09-24T18:59:21.2409385Z ##[group]Run helm/kind-action@v1
+2026-09-24T18:59:21.2410224Z with:
+2026-09-24T18:59:21.2410814Z   version: v0.31.0
+2026-09-24T18:59:21.2411482Z   cluster_name: chart-testing
+2026-09-24T18:59:21.2412215Z   wait: 60s
+2026-09-24T18:59:21.2412804Z   verbosity: 0
+2026-09-24T18:59:21.2413425Z   kubectl_version: v1.35.0
+2026-09-24T18:59:21.2414135Z   registry: false
+2026-09-24T18:59:21.2414795Z   registry_image: registry:2
+2026-09-24T18:59:21.2415563Z   registry_name: kind-registry
+2026-09-24T18:59:21.2416318Z   registry_port: 5000
+2026-09-24T18:59:21.2417015Z   registry_enable_delete: false
+2026-09-24T18:59:21.2417799Z   install_only: false
+2026-09-24T18:59:21.2418752Z   ignore_failed_clean: false
+2026-09-24T18:59:21.2419512Z   cloud_provider: false
+2026-09-24T18:59:21.2420183Z env:
+2026-09-24T18:59:21.2420802Z   REPO_LC: kaustubh070707/cicd-pipeline
+2026-09-24T18:59:21.2421637Z ##[endgroup]
+2026-09-24T18:59:21.2738549Z Installing kind...
+2026-09-24T18:59:21.2751180Z /opt/hostedtoolcache/kind/v0.31.0/amd64/kind/bin ~/work/cicd-pipeline/cicd-pipeline
+2026-09-24T18:59:21.8236131Z kind-linux-amd64: OK
+2026-09-24T18:59:21.8269181Z ~/work/cicd-pipeline/cicd-pipeline
+2026-09-24T18:59:21.8270610Z Adding kind directory to PATH...
+2026-09-24T18:59:21.8271737Z Installing kubectl...
+2026-09-24T18:59:21.8283138Z /opt/hostedtoolcache/kind/v0.31.0/amd64/kubectl/bin ~/work/cicd-pipeline/cicd-pipeline
+2026-09-24T18:59:22.0609150Z kubectl: OK
+2026-09-24T18:59:22.0623679Z ~/work/cicd-pipeline/cicd-pipeline
+2026-09-24T18:59:22.0624785Z Adding kubectl directory to PATH...
+2026-09-24T18:59:22.0643476Z kind v0.31.0 go1.25.5 linux/amd64
+2026-09-24T18:59:22.0920120Z Client Version: v1.35.0
+2026-09-24T18:59:22.0929243Z Kustomize Version: v5.7.1
+2026-09-24T18:59:22.0930827Z Creating kind cluster...
+2026-09-24T18:59:22.4280877Z Creating cluster "chart-testing" ...
+2026-09-24T18:59:22.4282776Z  • Ensuring node image (kindest/node:v1.35.0) 🖼  ...
+2026-09-24T18:59:36.6861802Z  ✓ Ensuring node image (kindest/node:v1.35.0) 🖼
+2026-09-24T18:59:36.6862391Z  • Preparing nodes 📦   ...
+2026-09-24T18:59:39.5208659Z  ✓ Preparing nodes 📦 
+2026-09-24T18:59:39.5476662Z  • Writing configuration 📜  ...
+2026-09-24T18:59:39.6990489Z  ✓ Writing configuration 📜
+2026-09-24T18:59:39.6991092Z  • Starting control-plane 🕹️  ...
+2026-09-24T18:59:47.6423190Z  ✓ Starting control-plane 🕹️
+2026-09-24T18:59:47.6440703Z  • Installing CNI 🔌  ...
+2026-09-24T18:59:47.8713549Z  ✓ Installing CNI 🔌
+2026-09-24T18:59:47.8713984Z  • Installing StorageClass 💾  ...
+2026-09-24T18:59:48.1305864Z  ✓ Installing StorageClass 💾
+2026-09-24T18:59:48.1533033Z  • Waiting ≤ 1m0s for control-plane = Ready ⏳  ...
+2026-09-24T19:00:04.4089883Z  ✓ Waiting ≤ 1m0s for control-plane = Ready ⏳
+2026-09-24T19:00:04.4092228Z  • Ready after 16s 💚
+2026-09-24T19:00:04.5123920Z Set kubectl context to "kind-chart-testing"
+2026-09-24T19:00:04.5124397Z You can now use your cluster with:
+2026-09-24T19:00:04.5124786Z 
+2026-09-24T19:00:04.5125010Z kubectl cluster-info --context kind-chart-testing
+2026-09-24T19:00:04.5125210Z 
+2026-09-24T19:00:04.5125827Z Not sure what to do next? 😅  Check out https://kind.sigs.k8s.io/docs/user/quick-start/
+2026-09-24T19:00:04.5212620Z ##[group]Run azure/setup-kubectl@v4
+2026-09-24T19:00:04.5212867Z with:
+2026-09-24T19:00:04.5213032Z   version: latest
+2026-09-24T19:00:04.5213198Z env:
+2026-09-24T19:00:04.5213374Z   REPO_LC: kaustubh070707/cicd-pipeline
+2026-09-24T19:00:04.5213587Z ##[endgroup]
+2026-09-24T19:00:05.2488656Z ##[group]Run sed -i "s|image: .*|image: ghcr.io/kaustubh070707/cicd-pipeline:63f1b5eb5919029d24c870ac86a3846efb017317|" k8s/deployment.yaml
+2026-09-24T19:00:05.2489961Z [36;1msed -i "s|image: .*|image: ghcr.io/kaustubh070707/cicd-pipeline:63f1b5eb5919029d24c870ac86a3846efb017317|" k8s/deployment.yaml[0m
+2026-09-24T19:00:05.2570082Z shell: /usr/bin/bash -e {0}
+2026-09-24T19:00:05.2570446Z env:
+2026-09-24T19:00:05.2570727Z   REPO_LC: kaustubh070707/cicd-pipeline
+2026-09-24T19:00:05.2571332Z ##[endgroup]
+2026-09-24T19:00:05.2759953Z ##[group]Run kubectl apply -f k8s/
+2026-09-24T19:00:05.2760372Z [36;1mkubectl apply -f k8s/[0m
+2026-09-24T19:00:05.2760799Z [36;1mkubectl rollout status deployment/app --timeout=120s[0m
+2026-09-24T19:00:05.2833340Z shell: /usr/bin/bash -e {0}
+2026-09-24T19:00:05.2833675Z env:
+2026-09-24T19:00:05.2833948Z   REPO_LC: kaustubh070707/cicd-pipeline
+2026-09-24T19:00:05.2834298Z ##[endgroup]
+2026-09-24T19:00:05.5542138Z deployment.apps/app created
+2026-09-24T19:00:05.5683835Z service/app created
+2026-09-24T19:00:05.6579951Z Waiting for deployment "app" rollout to finish: 0 out of 2 new replicas have been updated...
+2026-09-24T19:00:05.6667650Z Waiting for deployment "app" rollout to finish: 0 of 2 updated replicas are available...
+2026-09-24T19:02:05.6526027Z error: timed out waiting for the condition
+2026-09-24T19:02:05.6547061Z ##[error]Process completed with exit code 1.
+2026-09-24T19:02:05.6636200Z Post job cleanup.
+2026-09-24T19:02:05.6988734Z Error response from daemon: No such container: kind-registry
+2026-09-24T19:02:05.7118402Z Deleting cluster "chart-testing" ...
+2026-09-24T19:02:07.9845509Z Deleted nodes: ["chart-testing-control-plane"]
+2026-09-24T19:02:07.9961923Z Post job cleanup.
+2026-09-24T19:02:08.0627787Z [command]/usr/bin/git version
+2026-09-24T19:02:08.0662951Z git version 2.55.0
+2026-09-24T19:02:08.0690489Z Temporarily overriding HOME='/home/runner/work/_temp/d6225d7c-f0c7-4ddb-a7f9-779a8d062caf' before making global git config changes
+2026-09-24T19:02:08.0691528Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-24T19:02:08.0694114Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cicd-pipeline/cicd-pipeline
+2026-09-24T19:02:08.0727816Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-24T19:02:08.0756177Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-24T19:02:08.0976229Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-24T19:02:08.0999762Z http.https://github.com/.extraheader
+2026-09-24T19:02:08.1008959Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-09-24T19:02:08.1039623Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-24T19:02:08.1255325Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-24T19:02:08.1288780Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-24T19:02:08.1624505Z Cleaning up orphan processes
+2026-09-24T19:02:08.1901875Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, azure/setup-kubectl@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

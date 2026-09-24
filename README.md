@@ -13,7 +13,7 @@ push/PR on main
 
 * Images tagged by commit SHA, never `latest` — every deploy traces to one commit.
 * Secrets via GitHub Secrets; nothing sensitive in the repo.
-* `main` merges only through a green pipeline (branch protection).
+* `main` merges through a green pipeline — branch protection (require green checks) is the next hardening step.
 
 ## Status
 
@@ -48,3 +48,9 @@ Build context repointed at the RAG service Dockerfile, same SHA-tag flow; deploy
 Break: `/health` forced to HTTP 500 → push → lint-test green, build-scan-push green, **deploy red**:
 `Waiting for deployment "app" rollout to finish: 0 of 2 updated replicas are available... error: timed out waiting for the condition` — probes held all broken pods out of service, exit 1.
 Recover: `git revert` the break commit → push → all three jobs green. Rollback here is an ordinary commit, no heroics.
+
+## Proof
+
+- `docs/all-green.png` — 3/3 jobs green (first full green: starlette pin past the CVE cap).
+- `docs/probe-hold.png` — break pushed: 2 green, 1 failing (deploy red after 2m, probes held).
+- `docs/logs/deploy-red.txt` + `docs/logs/deploy-green.txt` — full raw deploy logs for both runs.
