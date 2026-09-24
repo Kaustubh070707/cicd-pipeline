@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-app = FastAPI(title="C1 demo app - replace with D1 image")
+app = FastAPI(title="C1 pipeline demo service")
 
 class AskRequest(BaseModel):
     question:str
@@ -12,7 +12,7 @@ def health():
 
 @app.get("/")
 def root():
-    return {"msg": "C1 pipeline target - wire to D1 after D1 works"}
+    return {"msg": "C1 pipeline demo service"}
 
 @app.post("/ask")
 def ask(payload:AskRequest):
