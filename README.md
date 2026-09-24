@@ -17,12 +17,12 @@ push/PR on main
 
 ## Status
 
-![ci](https://github.com/OWNER/cicd-pipeline/actions/workflows/ci.yml/badge.svg)
+![ci](https://github.com/Kaustubh070707/cicd-pipeline/actions/workflows/pipeline.yml/badge.svg)
 
 ## Repo layout
 
 ```
-.github/workflows/ci.yml   pipeline definition
+.github/workflows/pipeline.yml   pipeline definition
 app/                        demo service (health + ask contract, replaced by D1 image at attach)
 k8s/deployment.yaml         Deployment + Service with probes and limits
 Dockerfile / Dockerfile.naive   slim vs baseline images
