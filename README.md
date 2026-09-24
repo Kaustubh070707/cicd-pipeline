@@ -47,7 +47,7 @@ Build context repointed at the RAG service Dockerfile, same SHA-tag flow; deploy
 
 Break: `/health` forced to HTTP 500 → push → lint-test green, build-scan-push green, **deploy red**:
 `Waiting for deployment "app" rollout to finish: 0 of 2 updated replicas are available... error: timed out waiting for the condition` — probes held all broken pods out of service, exit 1.
-Recover: `git revert` the break commit → push → all three jobs green. Rollback here is an ordinary commit, no heroics.
+Recover: `git revert` the break commit → push → all three jobs green.
 
 ## Proof
 
