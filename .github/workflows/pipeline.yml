@@ -49,4 +49,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # - run: echo "TODO: kubectl set image + rollout status, verify probes"
+      - name: Lowercase repo for GHCR
+        run: echo "REPO_LC=${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
+      - uses: helm/kind-action@v1
+      - uses: azure/setup-kubectl@v4
+      - name: Point manifests at this SHA
+        run: 'sed -i "s|image: .*|image: ghcr.io/${{ env.REPO_LC }}:${{ github.sha }}|" k8s/deployment.yaml'
+      - name: Deploy to kind
+        run: | 
+          kubectl apply -f k8s/
+          kubectl rollout status deployment/app --timeout=120s
+      - name: Smoke test
+        run: |
+          kubectl port-forward svc/app 8000:80 &
+          sleep 5
+          for i in $(seq 1 20); do curl -sf http://localhost:8000/health || exit 1; sleep 2; done
