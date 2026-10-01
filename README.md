@@ -11,7 +11,7 @@ push/PR on main
  └─ deploy: rolling update, readiness/liveness probes, automatic rollback
 ```
 
-* Images tagged by commit SHA, never `latest` — every deploy traces to one commit.
+* Images tagged by commit SHA, never `latest` — every deploy traces to one commit (rebuilt Oct 2026 to re-check base CVEs).
 * Secrets via GitHub Secrets; nothing sensitive in the repo.
 * `main` merges through a green pipeline. Branch protection requiring those checks is the next hardening step — to enable it, set the branch rule to require `lint-test`, `build-scan-push`, and `deploy` before merging.
 * Trivy uses `ignore-unfixed: true` — only findings with a published fix can block. The first scan found 44 unfixable OS findings plus 3 fixable starlette ones; the flag drops the noise so the three were fixed explicitly.
